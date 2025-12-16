@@ -41,6 +41,7 @@ vfs-trello = ["py-trello>=0.19"]
 vfs-figma = ["httpx>=0.25"]
 
 [project.scripts]
+selfmodel = "main:main"
 vfsd = "vfsd.cli:main"
 
 [build-system]

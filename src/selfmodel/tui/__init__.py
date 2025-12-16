@@ -9,6 +9,6 @@ Built with Textual, provides a beautiful terminal dashboard for:
 - Monitoring loop statistics
 """
 
-from .app import SelfModelApp
+from .app import SelfModelApp, run_tui
 
-__all__ = ["SelfModelApp"]
+__all__ = ["SelfModelApp", "run_tui"]

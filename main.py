@@ -290,6 +290,13 @@ def cmd_viz(args):
         print(f"Unknown view: {args.view}")
 
 
+def cmd_tui(args):
+    """Launch TUI dashboard."""
+    from selfmodel.tui import run_tui
+
+    run_tui(profile=args.profile, base_dir=args.base_dir)
+
+
 def cmd_query(args):
     """Query profile state."""
     from selfmodel import open_store, query
@@ -350,17 +357,25 @@ def cmd_query(args):
 
 def main():
     """Main CLI entry point."""
+    # If no arguments provided, launch TUI
+    if len(sys.argv) == 1:
+        from selfmodel.tui import run_tui
+        run_tui()
+        return
+
     parser = argparse.ArgumentParser(
         description="Self-Model: Cognitive self-modeling system",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
+  selfmodel                              - Launch TUI dashboard
   selfmodel bootstrap jacob-heavy-v1
   selfmodel repl jacob-heavy-v1
   selfmodel status jacob-heavy-v1
   selfmodel run jacob-heavy-v1 --mock
   selfmodel export jacob-heavy-v1 -o state.json
   selfmodel input jacob-heavy-v1 "Working on a new project"
+  selfmodel tui jacob-heavy-v1          - Launch TUI for specific profile
 
 Profile format: {name}[-{persona}]-{tier}-{version}
   tier: heavy, light, micro
@@ -456,6 +471,11 @@ Profile format: {name}[-{persona}]-{tier}-{version}
     p_query.add_argument("--limit", "-n", type=int, default=5,
                          help="Number of entries (default: 5)")
     p_query.set_defaults(func=cmd_query)
+
+    # tui
+    p_tui = subparsers.add_parser("tui", help="Launch TUI dashboard")
+    p_tui.add_argument("profile", nargs="?", help="Profile key (optional, will auto-select if only one)")
+    p_tui.set_defaults(func=cmd_tui)
 
     args = parser.parse_args()
 
