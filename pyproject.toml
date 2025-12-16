@@ -1,0 +1,79 @@
+[project]
+name = "self-model"
+version = "0.1.0"
+description = "A system for building transferable cognitive self-models"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "pydantic>=2.0",
+    "textual>=0.47.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+]
+vfs = [
+    # Core FUSE support
+    # "pyfuse3>=3.0",  # Linux
+    # "fusepy>=3.0",   # Cross-platform
+]
+vfs-slack = ["slack-sdk>=3.0"]
+vfs-github = ["PyGithub>=2.0"]
+vfs-linear = ["httpx>=0.25"]
+vfs-notion = ["notion-client>=2.0"]
+vfs-jira = ["jira>=3.0"]
+vfs-gdrive = ["google-api-python-client>=2.0", "google-auth>=2.0"]
+vfs-dropbox = ["dropbox>=11.0"]
+vfs-s3 = ["boto3>=1.28"]
+vfs-docker = ["docker>=6.0"]
+vfs-k8s = ["kubernetes>=28.0"]
+vfs-postgres = ["asyncpg>=0.28", "psycopg>=3.0"]
+vfs-mongodb = ["motor>=3.0"]
+vfs-redis = ["redis>=5.0"]
+vfs-elasticsearch = ["elasticsearch>=8.0"]
+vfs-grafana = ["httpx>=0.25"]
+vfs-prometheus = ["httpx>=0.25"]
+vfs-gitlab = ["python-gitlab>=4.0"]
+vfs-discord = ["discord.py>=2.0"]
+vfs-trello = ["py-trello>=0.19"]
+vfs-figma = ["httpx>=0.25"]
+
+[project.scripts]
+vfsd = "vfsd.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = [
+    "src/timeindex",
+    "src/selfmodel",
+    "src/vfsd",
+    "src/vfs-slack",
+    "src/vfs-github",
+    "src/vfs-linear",
+    "src/vfs-notion",
+    "src/vfs-jira",
+    "src/vfs-gdrive",
+    "src/vfs-dropbox",
+    "src/vfs-s3",
+    "src/vfs-docker",
+    "src/vfs-k8s",
+    "src/vfs-postgres",
+    "src/vfs-mongodb",
+    "src/vfs-redis",
+    "src/vfs-elasticsearch",
+    "src/vfs-grafana",
+    "src/vfs-prometheus",
+    "src/vfs-gitlab",
+    "src/vfs-discord",
+    "src/vfs-trello",
+    "src/vfs-figma",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
