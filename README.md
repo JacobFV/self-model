@@ -1,6 +1,6 @@
 # Self-Model
 
-[![CI](https://github.com/OWNER/self-model/actions/workflows/ci.yml/badge.svg)](https://github.com/OWNER/self-model/actions/workflows/ci.yml)
+[![CI](https://github.com/JacobFV/self-model/actions/workflows/ci.yml/badge.svg)](https://github.com/JacobFV/self-model/actions/workflows/ci.yml)
 
 A system for building transferable cognitive self-models.
 
